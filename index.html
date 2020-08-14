@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Simran Biswas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="im">
+    <div class="menu">
+        <a href="projects.html"><i class='fas fa-project-diagram'></i> Projects</a>&nbsp;     
+        <a href="courses.html"><i class='fas fa-scroll'></i> Courses</a>&nbsp;
+        <a href="about.html"><i class='fas fa-user-alt'></i> About Me</a>&nbsp;
+    </div> <br><hr><br>
+    <p id="info"></p>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = ["Hi!<br> I'm Simran Biswas<br><span><i>Student and a Developer</i>.</span>"];
+  
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h1
+     document.querySelector("p").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 5000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+    </script>
+</body>
+</html>
